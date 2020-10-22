@@ -1,0 +1,11 @@
+#Banka Y, mevduat topluyor.
+
+bank1.book(debit=[('Müşteri A Mevduatı',20)],credit=[('Rezervler',20)])
+bank2.book(debit=[('Rezervler',20)],credit=[('Müşteri A Mevduatı',20)])
+
+#Bilançolar
+display_svg(SVG(bank1.draw_balance_sheet("Banka X", width=500)))
+display_svg(SVG(bank2.draw_balance_sheet("Banka Y", width=500)))
+
+#Para Arzı
+print_money_stocks()
