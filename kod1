@@ -9,6 +9,9 @@ def print_money_stocks():
     # Her müşterinin hesabında bulunan mevduat tutarı, banka parası değişkenine ekleniyor.
     bank_money = bank1.get_balance('Müşteri A Mevduatı')[1]
     bank_money += bank1.get_balance('Müşteri B Mevduatı')[1]
+    bank_money += bank1.get_balance('Müşteri C Mevduatı')[1]
+    bank_money += bank2.get_balance('Müşteri A Mevduatı')[1]
+    bank_money += bank2.get_balance('Müşteri B Mevduatı')[1]
     bank_money += bank2.get_balance('Müşteri C Mevduatı')[1]
     
     # Her müşterinin ve bankaların aktifinde bulunan Nakit tutarı merkez bankası parası değişkenine ekleniyor.
@@ -53,9 +56,9 @@ central_bank = Ledger(residual_account_name="Sermaye")
 
 #  Bankaların aktif ve pasif kalemleri tanımlanıyor.
 bank1.make_asset_accounts(['Nakit','Kredi','Rezervler','Bankalararası Alacak'])
-bank1.make_liability_accounts(['Müşteri A Mevduatı','Müşteri B Mevduatı','Bankalararası Borç', 'Tahvil İhracı', 'Merkez Bankasına Borçlar'])
+bank1.make_liability_accounts(['Müşteri A Mevduatı','Müşteri B Mevduatı','Müşteri C Mevduatı','Bankalararası Borç', 'Tahvil İhracı', 'Merkez Bankasına Borçlar'])
 bank2.make_asset_accounts(['Nakit','Kredi','Rezervler','Bankalararası Alacak'])
-bank2.make_liability_accounts(['Müşteri C Mevduatı','Bankalararası Borç', 'Tahvil İhracı', 'Merkez Bankasına Borçlar'])
+bank2.make_liability_accounts(['Müşteri A Mevduatı','Müşteri B Mevduatı','Müşteri C Mevduatı','Bankalararası Borç', 'Tahvil İhracı', 'Merkez Bankasına Borçlar'])
 
 # Müşterilerin aktif ve pasif kalemleri tanımlanıyor.
 private_agentA.make_asset_accounts(['Nakit','Mevduat','Banka Tahvili'])
