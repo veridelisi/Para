@@ -1,0 +1,11 @@
+#Banka Y, M.B'dan Borç Alır.
+
+
+bank2.book(debit=[('Rezervler',10)],credit=[('Merkez Bankasına Borçlar',10)])
+central_bank.book(debit=[('Bankalara Borçlar',10)],credit=[('Rezervler',10)])
+
+#Bilançolar
+display_svg(SVG(bank2.draw_balance_sheet("Banka Y", width=500)))
+display_svg(SVG(central_bank.draw_balance_sheet("Merkez Bankası", width=500)))
+#Para Arzı
+print_money_stocks()
