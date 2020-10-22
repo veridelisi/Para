@@ -1,0 +1,89 @@
+pip install abcFinance
+
+from abcFinance import Ledger
+
+from IPython.core.display import SVG
+from IPython.display import display_svg
+
+def print_money_stocks():
+    # Her müşterinin hesabında bulunan mevduat tutarı, banka parası değişkenine ekleniyor.
+    bank_money = bank1.get_balance('Müşteri A Mevduatı')[1]
+    bank_money += bank1.get_balance('Müşteri B Mevduatı')[1]
+    bank_money += bank2.get_balance('Müşteri C Mevduatı')[1]
+    
+    # Her müşterinin ve bankaların aktifinde bulunan Nakit tutarı merkez bankası parası değişkenine ekleniyor.
+    central_bank_money = private_agentA.get_balance('Nakit')[1]
+    central_bank_money += private_agentB.get_balance('Nakit')[1]
+    central_bank_money += private_agentC.get_balance('Nakit')[1]
+    central_bank_money += bank1.get_balance('Nakit')[1]
+    central_bank_money += bank2.get_balance('Nakit')[1]
+    
+    print("Banka Parası:",bank_money)
+    if central_bank_money>0:
+        print("Merkez Bankası Parası:",central_bank_money)
+        
+        #  Banka parası ile merkez bankası parasının toplamı, para arzı  değişkenini veriyor.
+    print("Para Arzı:",bank_money+central_bank_money)
+
+def print_balance_sheets_and_money_stocks(*args):
+    private_agentA.book_end_of_period()
+    private_agentB.book_end_of_period()
+    private_agentC.book_end_of_period()
+    
+    if len(args)==0:
+        args = ("b1","b2","pA","pB","pC","cb")
+    if "b1" in args and bank1.get_total_assets() > 0: display_svg(SVG(bank1.draw_balance_sheet("Banka A", width=500)))
+    if "b2" in args and bank2.get_total_assets() > 0: display_svg(SVG(bank2.draw_balance_sheet("Banka B", width=500)))
+    if "pA" in args and private_agentA.get_total_assets() > 0: display_svg(SVG(private_agentA.draw_balance_sheet("Müşteri A", width=500)))
+    if "pB" in args and private_agentB.get_total_assets() > 0: display_svg(SVG(private_agentB.draw_balance_sheet("Müşteri B", width=500)))
+    if "pC" in args and private_agentC.get_total_assets() > 0: display_svg(SVG(private_agentC.draw_balance_sheet("Müşteri C", width=500)))
+    if "cb" in args and central_bank.get_total_assets() > 0: display_svg(SVG(central_bank.draw_balance_sheet("Merkez Bankası", width=500)))
+        
+    print_money_stocks()
+    
+#  Her aktörün bilançosunun artık hesabı, aktiften pasif çıkartıldığında kalan kısım, Sermaye olarak adlandırılıyor.
+    
+bank1 = Ledger(residual_account_name="Sermaye")
+bank2 = Ledger(residual_account_name="Sermaye")
+private_agentA = Ledger(residual_account_name="Sermaye")
+private_agentB = Ledger(residual_account_name="Sermaye")
+private_agentC = Ledger(residual_account_name="Sermaye")
+central_bank = Ledger(residual_account_name="Sermaye")
+
+
+#  Bankaların aktif ve pasif kalemleri tanımlanıyor.
+bank1.make_asset_accounts(['Nakit','Kredi','Rezervler','Bankalararası Alacak'])
+bank1.make_liability_accounts(['Müşteri A Mevduatı','Müşteri B Mevduatı','Bankalararası Borç', 'Tahvil İhracı', 'Merkez Bankasına Borçlar'])
+bank2.make_asset_accounts(['Nakit','Kredi','Rezervler','Bankalararası Alacak'])
+bank2.make_liability_accounts(['Müşteri C Mevduatı','Bankalararası Borç', 'Tahvil İhracı', 'Merkez Bankasına Borçlar'])
+
+# Müşterilerin aktif ve pasif kalemleri tanımlanıyor.
+private_agentA.make_asset_accounts(['Nakit','Mevduat','Banka Tahvili'])
+private_agentA.make_liability_accounts(['Kredi'])
+private_agentA.make_flow_accounts(['Gelirler','Harcamalar'])
+private_agentB.make_asset_accounts(['Nakit','Mevduat'])
+private_agentB.make_liability_accounts(['Kredi'])
+private_agentB.make_flow_accounts(['Gelirler','Harcamalar'])
+private_agentC.make_asset_accounts(['Nakit','Mevduat','Banka Tahvili'])
+private_agentC.make_liability_accounts(['Kredi'])
+private_agentC.make_flow_accounts(['Gelirler','Harcamalar'])
+
+# Merkez Bankasının aktif ve pasif kalemleri tanımlanıyor.
+central_bank.make_asset_accounts(['Devlet Tahvili','Bankalara Borçlar'])
+central_bank.make_liability_accounts(['Nakit','Rezervler'])
+
+
+#Başlangıç
+bank1.book(debit=[('Nakit',50)],credit=[('Sermaye',50)])
+bank2.book(debit=[('Nakit',50)],credit=[('Sermaye',50)])
+private_agentA.book(debit=[('Nakit',100)],credit=[('Sermaye',100)])
+central_bank.book(debit=[('Devlet Tahvili',200)],credit=[('Nakit',200)])
+
+#Başlangıç- Bilançolar
+display_svg(SVG(bank1.draw_balance_sheet("Banka A", width=500)))
+display_svg(SVG(bank2.draw_balance_sheet("Banka B", width=500)))
+display_svg(SVG(private_agentA.draw_balance_sheet("Müşteri A", width=500)))
+display_svg(SVG(central_bank.draw_balance_sheet("Merkez Bankası", width=500)))
+
+#Başlangıç- Para Arzı
+print_money_stocks()
