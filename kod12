@@ -1,0 +1,12 @@
+#Banka Y, Tahvil İhraç Eder.
+
+bank1.book(debit=[('Müşteri A Mevduatı',20)],credit=[('Rezervler',20)])
+bank2.book(debit=[('Rezervler',20)],credit=[('Tahvil İhracı',20)])
+private_agentA.book(debit=[('Banka Tahvili',20)],credit=[('Mevduat',20)])
+
+#Bilançolar
+display_svg(SVG(bank1.draw_balance_sheet("Banka X", width=500)))
+display_svg(SVG(bank2.draw_balance_sheet("Banka Y", width=500)))
+display_svg(SVG(private_agentA.draw_balance_sheet("Müşteri A", width=500)))
+#Para Arzı
+print_money_stocks()
