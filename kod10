@@ -1,0 +1,8 @@
+#Müşteri A, Banka X'den Nakit Para Çeker.
+bank1.book(debit=[('Müşteri A Mevduatı',20)],credit=[('Nakit',20)])
+private_agentA.book(debit=[('Nakit',20)],credit=[('Mevduat',20)])
+#Bilançolar
+display_svg(SVG(bank1.draw_balance_sheet("Banka X", width=500)))
+display_svg(SVG(private_agentA.draw_balance_sheet("Müşteri A", width=500)))
+#Para Arzı
+print_money_stocks()
