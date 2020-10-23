@@ -1,10 +1,10 @@
 #Müşteri A, Banka X'e Nakit Para Yatırır
-bank1.book(debit=[('Nakit',100)],credit=[('Müşteri A Mevduatı',100)])
-private_agentA.book(debit=[('Mevduat',100)],credit=[('Nakit',100)])
+Xbankasi.book(debit=[('Nakit',100)],credit=[('Müşteri A Mevduatı',100)])
+MusteriA.book(debit=[('Mevduat',100)],credit=[('Nakit',100)])
 
 #Bilançolar
-display_svg(SVG(bank1.draw_balance_sheet("Banka X", width=500)))
-display_svg(SVG(private_agentA.draw_balance_sheet("Müşteri A", width=500)))
+display_svg(SVG(Xbankasi.draw_balance_sheet("Banka X", width=500)))
+display_svg(SVG(MusteriA.draw_balance_sheet("Müşteri A", width=500)))
 
 
 #Para Arzı
