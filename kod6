@@ -1,9 +1,10 @@
-#Müşteri B, Banka X'ya Ana Para Ödemesi Yapar. 
+#Müşteri B, Banka X'e Ana Para Ödemesi Yapar. 
+Xbankasi.book(debit=[('Müşteri B Mevduatı',70)],credit=[('Kredi',70)])
+MusteriB.book(debit=[('Kredi',70)],credit=[('Mevduat',70)])
 
-bank1.book(debit=[('Müşteri B Mevduatı',70)],credit=[('Kredi',70)])
-private_agentB.book(debit=[('Kredi',70)],credit=[('Mevduat',70)])
 #Bilançolar
-display_svg(SVG(bank1.draw_balance_sheet("Banka X", width=500)))
-display_svg(SVG(private_agentB.draw_balance_sheet("Müşteri B", width=500)))
+display_svg(SVG(Xbankasi.draw_balance_sheet("Banka X", width=500)))
+display_svg(SVG(MusteriB.draw_balance_sheet("Müşteri B", width=500)))
+
 #Para Arzı
 print_money_stocks()
