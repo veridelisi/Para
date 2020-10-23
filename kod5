@@ -1,9 +1,10 @@
 #Banka Y, Müşteri C'ye Kredi Verir.
+Ybankasi.book(debit=[('Kredi',100)],credit=[('Müşteri C Mevduatı',100)])
+MusteriC.book(debit=[('Mevduat',100)],credit=[('Kredi',100)])
 
-bank2.book(debit=[('Kredi',100)],credit=[('Müşteri C Mevduatı',100)])
-private_agentC.book(debit=[('Mevduat',100)],credit=[('Kredi',100)])
 #Bilançolar
-display_svg(SVG(bank2.draw_balance_sheet("Banka Y", width=500)))
-display_svg(SVG(private_agentC.draw_balance_sheet("Müşteri C", width=500)))
+display_svg(SVG(Ybankasi.draw_balance_sheet("Banka Y", width=500)))
+display_svg(SVG(MusteriC.draw_balance_sheet("Müşteri C", width=500)))
+
 #Para Arzı
 print_money_stocks()
