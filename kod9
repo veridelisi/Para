@@ -1,10 +1,12 @@
 #Bankalar, M.B'dan Nakit Alır.
-bank1.book(debit=[('Nakit',10)],credit=[('Rezervler',10)])
-bank2.book(debit=[('Nakit',10)],credit=[('Rezervler',10)])
-central_bank.book(debit=[('Rezervler',20)],credit=[('Nakit',20)])
+Xbankasi.book(debit=[('Nakit',10)],credit=[('Rezervler',10)])
+Ybankasi.book(debit=[('Nakit',10)],credit=[('Rezervler',10)])
+Merkez_Bankasi.book(debit=[('Rezervler',20)],credit=[('Nakit',20)])
+
 #Bilançolar
-display_svg(SVG(bank1.draw_balance_sheet("Banka X", width=500)))
-display_svg(SVG(bank2.draw_balance_sheet("Banka Y", width=500)))
-display_svg(SVG(central_bank.draw_balance_sheet("Merkez Bankası", width=500)))
+display_svg(SVG(Xbankasi.draw_balance_sheet("Banka X", width=500)))
+display_svg(SVG(Ybankasi.draw_balance_sheet("Banka Y", width=500)))
+display_svg(SVG(Merkez_Bankasi.draw_balance_sheet("Merkez Bankası", width=500)))
+
 #Para Arzı
 print_money_stocks()
