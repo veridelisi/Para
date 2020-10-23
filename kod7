@@ -1,11 +1,12 @@
 #Müşteri A, Müşteri B'ye 50 TL Ödeme Yapar. 
+Xbankasi.book(debit=[('Müşteri A Mevduatı',50)],credit=[('Müşteri B Mevduatı',50)])
+MusteriA.book(debit=[('Sermaye',50)],credit=[('Mevduat',50)])
+MusteriB.book(debit=[('Mevduat',50)],credit=[('Sermaye',50)])
 
-bank1.book(debit=[('Müşteri A Mevduatı',50)],credit=[('Müşteri B Mevduatı',50)])
-private_agentA.book(debit=[('Sermaye',50)],credit=[('Mevduat',50)])
-private_agentB.book(debit=[('Mevduat',50)],credit=[('Sermaye',50)])
 #Bilançolar
-display_svg(SVG(bank1.draw_balance_sheet("Banka X", width=500)))
-display_svg(SVG(private_agentA.draw_balance_sheet("Müşteri A", width=500)))
-display_svg(SVG(private_agentB.draw_balance_sheet("Müşteri B", width=500)))
+display_svg(SVG(Xbankasi.draw_balance_sheet("Banka X", width=500)))
+display_svg(SVG(MusteriA.draw_balance_sheet("Müşteri A", width=500)))
+display_svg(SVG(MusteriB.draw_balance_sheet("Müşteri B", width=500)))
+
 #Para Arzı
 print_money_stocks()
