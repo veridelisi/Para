@@ -1,7 +1,7 @@
 #Bankalar, M.B'dan Rezerv Alır.
 Xbankasi.book(debit=[('Rezervler',100)],credit=[('Merkez Bankasına Borçlar',100)])
 Ybankasi.book(debit=[('Rezervler',100)],credit=[('Merkez Bankasına Borçlar',100)])
-Merkez_Bankasi.book(debit=[('Bankalara Borçlar',200)],credit=[('Rezervler',200)])
+Merkez_Bankasi.book(debit=[('Bankalara Verilen Krediler',200)],credit=[('Rezervler',200)])
 
 #Bilançolar
 display_svg(SVG(Xbankasi.draw_balance_sheet("Banka X", width=500)))
