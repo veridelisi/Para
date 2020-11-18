@@ -60,16 +60,14 @@ Ybankasi.make_liability_accounts(['Müşteri A Mevduatı','Müşteri B Mevduatı
 # Müşterilerin varlık ve yükümlülük kalemleri tanımlanıyor.
 MusteriA.make_asset_accounts(['Nakit','Mevduat','Banka Tahvili'])
 MusteriA.make_liability_accounts(['Kredi'])
-MusteriA.make_flow_accounts(['Gelirler','Harcamalar'])
 MusteriB.make_asset_accounts(['Nakit','Mevduat'])
 MusteriB.make_liability_accounts(['Kredi'])
-MusteriB.make_flow_accounts(['Gelirler','Harcamalar'])
 MusteriC.make_asset_accounts(['Nakit','Mevduat','Banka Tahvili'])
 MusteriC.make_liability_accounts(['Kredi'])
-MusteriC.make_flow_accounts(['Gelirler','Harcamalar'])
+
 
 # Merkez Bankasının varlık ve yükümlülük kalemleri tanımlanıyor.
-Merkez_Bankasi.make_asset_accounts(['Devlet Tahvili','Bankalara Borçlar'])
+Merkez_Bankasi.make_asset_accounts(['Devlet Tahvili','Bankalara Verilen Krediler'])
 Merkez_Bankasi.make_liability_accounts(['Nakit','Rezervler'])
 
 
