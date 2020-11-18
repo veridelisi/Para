@@ -60,7 +60,7 @@ Ybankasi.make_liability_accounts(['Müşteri A Mevduatı','Müşteri B Mevduatı
 # Müşterilerin varlık ve yükümlülük kalemleri tanımlanıyor.
 MusteriA.make_asset_accounts(['Nakit','Mevduat','Banka Tahvili'])
 MusteriA.make_liability_accounts(['Kredi'])
-MusteriB.make_asset_accounts(['Nakit','Mevduat'])
+MusteriB.make_asset_accounts(['Nakit','Mevduat','Banka Tahvili'])
 MusteriB.make_liability_accounts(['Kredi'])
 MusteriC.make_asset_accounts(['Nakit','Mevduat','Banka Tahvili'])
 MusteriC.make_liability_accounts(['Kredi'])
