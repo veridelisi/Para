@@ -1,6 +1,6 @@
 #Banka Y, M.B'dan Borç Alır.
 Ybankasi.book(debit=[('Rezervler',10)],credit=[('Merkez Bankasına Borçlar',10)])
-Merkez_Bankasi.book(debit=[('Bankalara Borçlar',10)],credit=[('Rezervler',10)])
+Merkez_Bankasi.book(debit=[('Bankalara Verilen Krediler',10)],credit=[('Rezervler',10)])
 
 #Bilançolar
 display_svg(SVG(Ybankasi.draw_balance_sheet("Banka Y", width=500)))
