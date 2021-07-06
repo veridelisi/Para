@@ -5,5 +5,8 @@ Burada yer alan tüm kodlar "https://github.com/AB-CE/abcFinance" sayfasındaki 
 Orjinal kodu yazanlardan izin alınmıştır.
 Kodların üzerinde değişik simülasyon örneklerine yer verilmiştir.
 <BR>
-01-10-2020 Ankara
+01-10-2020 
+<BR>
+Ankara
+<BR>
 Dr.Engin YILMAZ
